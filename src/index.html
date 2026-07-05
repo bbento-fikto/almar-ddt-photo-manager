@@ -964,11 +964,9 @@ body{margin:0}
                 <div style="position:relative;aspect-ratio:4/3;border-radius:3px;overflow:hidden;background-image:{{ it.imgCss }};background-size:cover;background-position:center;border:1px solid #e3e9f0;margin-bottom:10px">
                   <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,rgba(8,18,30,.44))"></div>
                   <span style="position:absolute;left:8px;bottom:7px;font-size:9px;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,.9)">{{ it.file }}</span>
-                  <button style="appearance:none;cursor:pointer;position:absolute;top:7px;right:7px;background:rgba(255,255,255,.9);border:none;border-radius:5px;padding:4px 8px;font-size:9.5px;font-weight:600;color:#2c4866;font-family:inherit;display:flex;align-items:center;gap:4px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4Z"></path></svg>Edit</button>
                 </div>
                 <div style="font-size:9px;font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a9098;margin-bottom:4px">{{ it.category }}</div>
-                <p style="margin:0 0 7px;font-size:12.5px;line-height:1.45;color:#374554;font-style:italic">{{ it.caption }}</p>
-                <div style="display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:{{ it.statusInk }}"><span style="width:6px;height:6px;border-radius:50%;background:{{ it.statusInk }};flex:none"></span>{{ it.status }}</div>
+                <p style="margin:0;font-size:12.5px;line-height:1.45;color:#374554;font-style:italic">{{ it.caption }}</p>
               </div>
             </sc-for>
           </div>
@@ -1590,7 +1588,7 @@ class Component extends DCLogic {
           { label: 'Verifying group approvals',  detail: 'Confirming all groups have been reviewed and approved', kicker: 'Step 02 — Verify',    footnote: this.approvedCount() + ' groups approved' },
           { label: 'Compiling photo selection',  detail: 'Selecting the recommended photo per group',             kicker: 'Step 02 — Compile',   footnote: 'Selecting 1 photo per group…' },
           { label: 'Generating captions',        detail: 'Applying AI-suggested captions to each photo',          kicker: 'Step 02 — Captions',  footnote: 'Captions ready' },
-          { label: 'Building report structure',  detail: 'Organising 7 sections for the DDT photographic report', kicker: 'Step 02 — Structure', footnote: '7 sections identified' },
+          { label: 'Building report structure',  detail: 'Organising the DDT photographic report sections',       kicker: 'Step 02 — Structure', footnote: this.reportSections().length + ' sections identified' },
           { label: 'Preparing preview',          detail: 'Rendering the photographic section for final review',   kicker: 'Step 02 — Preview',   footnote: 'Preview almost ready…' },
         ] : [
           { label: 'Scanning folder',            detail: 'Reading EXIF metadata and file sizes',              kicker: 'Step 01 — Scan',      footnote: 'Reading EXIF data…' },
