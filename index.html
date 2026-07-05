@@ -953,11 +953,12 @@ body{margin:0}
       </div>
       <sc-for list="{{ report }}" as="sec" hint-placeholder-count="7">
         <div style="padding:22px 40px;border-bottom:1px solid #eff1f4">
-          <div style="font-size:10.5px;font-weight:700;letter-spacing:.12em;color:#1c3149;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:16px;display:flex;align-items:center;gap:9px">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.12em;color:#1c3149;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:7px;display:flex;align-items:center;gap:9px">
             <span style="font-size:9px;font-weight:700;color:#fff;background:#2c4866;width:22px;height:22px;border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;flex:none">{{ sec.num }}</span>
             {{ sec.title }}
             <span style="margin-left:auto;font-size:9px;font-weight:500;color:#a0a8b0;text-transform:none;letter-spacing:.04em;font-family:'JetBrains Mono',monospace">{{ sec.countLabel }}</span>
           </div>
+          <p style="margin:0 0 16px;font-size:13px;line-height:1.45;color:#374554;font-style:italic">{{ sec.caption }}</p>
           <div style="display:grid;grid-template-columns:repeat({{ sec.cols }},1fr);gap:20px">
             <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="2">
               <div>
@@ -965,8 +966,7 @@ body{margin:0}
                   <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,rgba(8,18,30,.44))"></div>
                   <span style="position:absolute;left:8px;bottom:7px;font-size:9px;font-family:'JetBrains Mono',monospace;color:rgba(255,255,255,.9)">{{ it.file }}</span>
                 </div>
-                <div style="font-size:9px;font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a9098;margin-bottom:4px">{{ it.category }}</div>
-                <p style="margin:0;font-size:12.5px;line-height:1.45;color:#374554;font-style:italic">{{ it.caption }}</p>
+                <div style="font-size:9px;font-family:'JetBrains Mono',monospace;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a9098">{{ it.category }}</div>
               </div>
             </sc-for>
           </div>
@@ -1246,15 +1246,13 @@ class Component extends DCLogic {
     return this.reportSections().map(sec => ({
       num: String(sec.num),
       title: sec.def.title,
+      caption: sec.caption,
       cols: sec.photos.length >= 3 ? 3 : 2,
       countLabel: sec.photos.length + (sec.photos.length === 1 ? ' photo' : ' photos'),
       items: sec.photos.map(n => ({
         file: this.fileFor(n),
         category: sec.def.title,
-        caption: sec.caption,
-        status: sec.approved ? 'Approved' : 'Verify on site',
-        imgCss: this.photoCss(n),
-        statusInk: sec.st.ink
+        imgCss: this.photoCss(n)
       }))
     }));
   }
