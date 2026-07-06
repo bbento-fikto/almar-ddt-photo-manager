@@ -1317,7 +1317,7 @@ class Component extends DCLogic {
     ].map(d => {
       const active = d.n === cur, done = d.n < cur;
       const locked = d.n === 3 && !allOk;
-      const clickable = false; // stepper is a progress indicator only — not clickable navigation
+      const clickable = d.n < cur; // only previous steps are clickable — can go back, never advance
       return { ...d,
         go: clickable ? () => this.goStep(d.n) : () => {},
         locked,
